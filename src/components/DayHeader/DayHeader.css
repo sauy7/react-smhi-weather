@@ -1,0 +1,21 @@
+.DayHeader {
+  align-items: center;
+  background-color: lightgray;
+  color: gray;
+  display: flex;
+  padding: .5rem;
+}
+
+.Date {
+  flex-grow: 1;
+}
+
+.Sunrise,
+.Sunset {
+  flex-grow: 0;
+  padding: 0 .33rem;
+}
+
+.Time {
+  margin-left: .2rem;
+}

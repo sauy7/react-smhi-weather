@@ -1,0 +1,21 @@
+.BottomNavigation {
+  align-items: center;
+  background-color: white;
+  border-top: 1px solid lightgray;
+  bottom: 0;
+  display: flex;
+  height: 5rem;
+  justify-content: space-evenly;
+  position: fixed;
+  width: 100%;
+}
+
+.Home,
+.More,
+.TenDays {
+  text-align: center;
+
+  div {
+    margin-top: .2rem;
+  }
+}

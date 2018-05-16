@@ -1,0 +1,54 @@
+.ForecastRow {
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid gray;
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem;
+}
+
+.Description {
+  color: darkgray;
+}
+
+.Precipitation {
+  text-align: right;
+}
+
+.PrecipitationNumber {
+  font-weight: bold;
+}
+
+.Temperature {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: .5rem;
+}
+
+.Time {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.TimeAndTemperature {
+  align-items: baseline;
+  display: flex;
+}
+
+.WeatherSymbol {
+  margin: 0 1rem;
+}
+
+.Wind {
+  align-items: center;
+  display: flex;
+}
+
+.WindSpeedNumber {
+  font-weight: 700;
+  margin-right: .2rem;
+}
+
+.WindSymbol {
+  margin-right: .2rem;
+}
