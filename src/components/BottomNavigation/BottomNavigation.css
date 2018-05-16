@@ -1,5 +1,5 @@
 .BottomNavigation {
-  align-items: center;
+  align-items: stretch;
   background-color: white;
   border-top: 1px solid lightgray;
   bottom: 0;

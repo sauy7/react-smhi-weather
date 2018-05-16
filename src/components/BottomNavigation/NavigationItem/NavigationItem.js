@@ -5,7 +5,8 @@ import css from './NavigationItem.css';
 
 const NavigationItem = (props) => {
   const activeStyle = {
-    color: 'cornflowerblue'
+    backgroundColor: 'cornflowerblue',
+    color: 'white'
   };
 
   return (

@@ -1,9 +1,11 @@
 .NavigationItem {
   color: black;
+  padding-top: 1.3rem;
   text-align: center;
   text-decoration: none;
   transition: color 0.2s, transform 0.2s;
   transition-timing-function: ease-in-out;
+  width: 100%;
 
   &:hover {
     color: darkgray;
