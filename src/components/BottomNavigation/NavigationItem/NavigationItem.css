@@ -1,0 +1,21 @@
+.NavigationItem {
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.2s, transform 0.2s;
+  transition-timing-function: ease-in-out;
+
+  &:hover {
+    color: darkgray;
+    transform: scale(1.05, 1.05);
+  }
+
+  &:active {
+    color: cornflowerblue;
+  }
+}
+
+.Label {
+  margin-top: .2rem;
+  text-transform: uppercase;
+}

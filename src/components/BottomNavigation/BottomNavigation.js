@@ -1,25 +1,28 @@
 import React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import NavigationItem from './NavigationItem/NavigationItem';
 import faStart from '@fortawesome/fontawesome-free-solid/faHome';
-import faCalendar from '@fortawesome/fontawesome-free-regular/faCalendarAlt';
+import faTenDays from '@fortawesome/fontawesome-free-regular/faCalendarAlt';
 import faMore from '@fortawesome/fontawesome-free-solid/faCog';
 import css from './BottomNavigation.css';
 
 const BottomNavigation = () => {
+  const items = [
+    { to: '/', exact: true, icon: faStart, label: 'Start' },
+    { to: '/ten-days', exact: false, icon: faTenDays, label: '10 Days' },
+    { to: '/more', exact: false, icon: faMore, label: 'More' },
+  ];
+  const navigationItems = items.map(item => {
+    return <NavigationItem
+      to={item.to}
+      exact={item.exact}
+      icon={item.icon}
+      label={item.label}
+      key={item.to} />
+  })
+
   return (
     <nav className={css.BottomNavigation}>
-      <div className={css.Home}>
-        <FontAwesomeIcon icon={faStart} />
-        <div>START</div>
-      </div>
-      <div className={css.TenDays}>
-        <FontAwesomeIcon icon={faCalendar}/>
-        <div>10 DAYS</div>
-      </div>
-      <div className={css.More}>
-        <FontAwesomeIcon icon={faMore}/>
-        <div>MORE</div>
-      </div>
+      {navigationItems}
     </nav>
   );
 };

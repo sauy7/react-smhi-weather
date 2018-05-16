@@ -1,6 +1,7 @@
 .ForecastHeader {
   align-items: center;
   background-color: white;
+  border-bottom: 1px solid lightgray;
   box-sizing: border-box;
   display: flex;
   padding: 0.5rem;

@@ -1,0 +1,36 @@
+td {
+  border-bottom: 1px solid lightgray;
+  padding: .5rem;
+  text-align: center;
+}
+
+td.DayCell {
+  text-align: left;
+}
+
+td.PrecipitationCell {
+  text-align: right;
+}
+
+.Day {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: .2rem;
+}
+
+.Date {
+  white-space: nowrap;
+}
+
+.High {
+  font-weight: bold;
+}
+
+.Low {
+  color: darkgray;
+  font-weight: 700;
+}
+
+.PrecipitationNumber {
+  font-weight: 700;
+}

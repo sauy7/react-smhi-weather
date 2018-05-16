@@ -1,0 +1,23 @@
+.TenDayTable {
+  background-color: white;
+  border-collapse: collapse;
+  color: black;
+  margin-bottom: 5rem;
+  width: 100%;
+
+  th {
+    border-bottom: 1px solid lightgray;
+    color: darkgray;
+    font-weight: 400;
+    padding: .5rem;
+    text-align: center;
+  }
+
+  th.DayHeader {
+    text-align: left;
+  }
+
+  th.PrecipitationHeader {
+    text-align: right;
+  }
+}

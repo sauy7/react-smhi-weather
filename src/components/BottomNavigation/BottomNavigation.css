@@ -9,13 +9,3 @@
   position: fixed;
   width: 100%;
 }
-
-.Home,
-.More,
-.TenDays {
-  text-align: center;
-
-  div {
-    margin-top: .2rem;
-  }
-}

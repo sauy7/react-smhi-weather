@@ -1,7 +1,7 @@
 .ForecastRow {
   align-items: center;
   background-color: white;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid lightgray;
   display: flex;
   justify-content: space-between;
   padding: .5rem;

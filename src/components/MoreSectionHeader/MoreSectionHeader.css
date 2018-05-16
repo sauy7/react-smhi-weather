@@ -1,0 +1,10 @@
+.MoreSectionHeader {
+  background-color: lightgray;
+  box-sizing: border-box;
+  color: darkgray;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+  padding: .5rem;
+  width: 100%;
+}
