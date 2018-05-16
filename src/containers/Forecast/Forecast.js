@@ -9,8 +9,11 @@ import css from './Forecast.css';
 class Forecast extends Component {
   render() {
     return (
-      <div className={css.Forecast}>
-        <LocationHeader />
+      <section className={css.Forecast}>
+        <LocationHeader
+          back={false}
+          favourite={true}
+          search={true}/>
         <DayHeader
           date="SUN 13 MAY"
           sunrise="04:20"
@@ -79,7 +82,7 @@ class Forecast extends Component {
         <ForecastTiming
           day="today"
           time="19:00" />
-      </div>
+      </section>
     );
   }
 }

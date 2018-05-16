@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import BottomNavigation from '../BottomNavigation/BottomNavigation';
 
 const Layout = (props) => {
   return (
-    <React.Fragment>
+    <Fragment>
       <main>
         {props.children}
       </main>
       <BottomNavigation />
-    </React.Fragment>
+    </Fragment>
   );
 };
 

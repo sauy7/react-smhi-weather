@@ -6,10 +6,13 @@ import css from './TenDays.css';
 class TenDays extends Component {
   render() {
     return (
-      <div className={css.TenDays}>
-        <LocationHeader />
+      <section className={css.TenDays}>
+        <LocationHeader
+          back={false}
+          favourite={true}
+          search={true}/>
         <TenDayTable />
-      </div>
+      </section>
     );
   }
 }
