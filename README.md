@@ -1,3 +1,14 @@
+# react-smhi-weather
+
+This is a demo React.js application using weather forecast data from SMHI, the Swedish 
+Meteorological and Hydrological Institute.
+
+## Versions
+
+0.0.1 Static content components with react-router to navigate between screens
+
+# Default README content from Create React App
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
