@@ -1,3 +1,7 @@
+tr:hover {
+  cursor: pointer;
+}
+
 td {
   border-bottom: 1px solid lightgray;
   padding: .5rem;

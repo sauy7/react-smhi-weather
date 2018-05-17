@@ -3,13 +3,12 @@
   padding-top: 1.3rem;
   text-align: center;
   text-decoration: none;
-  transition: color 0.2s, transform 0.2s;
+  transition: color 0.2s;
   transition-timing-function: ease-in-out;
   width: 100%;
 
   &:hover {
     color: darkgray;
-    transform: scale(1.05, 1.05);
   }
 
   &:active {

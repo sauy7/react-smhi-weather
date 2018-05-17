@@ -6,7 +6,7 @@ import css from './TenDays.css';
 class TenDays extends Component {
   render() {
     return (
-      <section className={css.TenDays}>
+      <section className={[css.TenDays, 'page'].join(' ')}>
         <LocationHeader
           back={false}
           favourite={true}

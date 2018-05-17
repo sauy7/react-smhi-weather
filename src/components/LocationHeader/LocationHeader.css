@@ -15,6 +15,10 @@
 .Search {
   text-align: left;
   width: 25%;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .Search {

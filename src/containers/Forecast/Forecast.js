@@ -9,7 +9,7 @@ import css from './Forecast.css';
 class Forecast extends Component {
   render() {
     return (
-      <section className={css.Forecast}>
+      <section className={[css.Forecast, 'page'].join(' ')}>
         <LocationHeader
           back={false}
           favourite={true}

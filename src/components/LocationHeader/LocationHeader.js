@@ -28,7 +28,7 @@ const LocationHeader = withRouter(({history, ...props}) => {
     </div>);
   }
   return (
-    <div className={css.ForecastHeader}>
+    <header className={css.ForecastHeader}>
       {back}
       {favourite}
       <div className={css.Location}>
@@ -36,7 +36,7 @@ const LocationHeader = withRouter(({history, ...props}) => {
         <h2 className={css.County}>Järfälla</h2>
       </div>
       {search}
-    </div>
+    </header>
   );
 });
 

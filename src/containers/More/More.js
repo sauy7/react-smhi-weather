@@ -7,7 +7,7 @@ import css from './More.css';
 class More extends Component {
   render() {
     return (
-      <section>
+      <section className={[css.More, 'page'].join(' ')}>
         <header className={css.MoreHeader}>
           <h1>More</h1>
         </header>

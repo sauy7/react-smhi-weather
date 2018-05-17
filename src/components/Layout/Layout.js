@@ -4,9 +4,7 @@ import BottomNavigation from '../BottomNavigation/BottomNavigation';
 const Layout = (props) => {
   return (
     <Fragment>
-      <main>
-        {props.children}
-      </main>
+      {props.children}
       <BottomNavigation />
     </Fragment>
   );

@@ -2,12 +2,11 @@ import React, {Component} from 'react';
 import LocationHeader from '../../components/LocationHeader/LocationHeader';
 import DayHeader from '../../components/DayHeader/DayHeader';
 import ForecastRow from '../../components/ForecastRow/ForecastRow';
-import css from './TenDaysDetailed.css';
 
 class TenDaysDetailed extends Component {
   render() {
     return (
-      <section className={css.TenDaysDetailed}>
+      <section className="page">
         <LocationHeader
           back={true}
           favourite={false}
