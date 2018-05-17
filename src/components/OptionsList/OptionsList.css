@@ -1,0 +1,19 @@
+.OptionsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  li {
+    border-bottom: 1px solid lightgray;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: .5rem;
+
+    &.Active {
+      background-color: cornflowerblue;
+      color: white;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-.Favourites {
+.FavouritesList {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -11,6 +11,15 @@
   }
 }
 
-.Label {
+.Location {
   flex-grow: 1;
+  text-align: left;
+}
+
+.County {
+  color: darkgray;
+  flex-grow: 1;
+  font-size: .85rem;
+  margin-right: .5rem;
+  text-align: right;
 }

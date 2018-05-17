@@ -5,6 +5,10 @@ import More from '../More/More';
 import TenDays from '../TenDays/TenDays';
 import TenDaysDetailed from '../TenDaysDetailed/TenDaysDetailed';
 import Forecast from '../Forecast/Forecast';
+import Languages from '../Languages/Languages';
+import Search from '../Search/Search';
+import StartLocation from '../StartLocation/StartLocation';
+import Themes from '../Themes/Themes';
 import './Routers.css';
 
 const getPathDepth = (location) => {
@@ -39,9 +43,13 @@ class Routers extends Component {
               unmountOnExit={true}>
               <div className={getPathDepth(location) - this.state.prevDepth >= 0 ? 'left' : 'right'}>
                 <Switch location={location}>
+                  <Route path="/more/languages" component={Languages} />
+                  <Route path="/more/start-location" component={StartLocation} />
+                  <Route path="/more/themes" component={Themes} />
                   <Route path="/more" component={More} />
                   <Route path="/ten-days/detailed" component={TenDaysDetailed} />
                   <Route path="/ten-days" exact component={TenDays} />
+                  <Route path="/search" exact component={Search} />
                   <Route path="/" exact component={Forecast} />
                 </Switch>
               </div>

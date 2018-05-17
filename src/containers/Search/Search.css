@@ -1,0 +1,10 @@
+.FormGroup {
+  padding: .5rem;
+}
+
+.SearchInput {
+  box-sizing: border-box;
+  font-family: inherit;
+  padding: .5rem;
+  width: 100%;
+}

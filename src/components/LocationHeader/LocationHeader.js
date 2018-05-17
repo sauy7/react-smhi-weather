@@ -1,43 +1,29 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faBack from '@fortawesome/fontawesome-free-solid/faChevronLeft';
-import faStar from '@fortawesome/fontawesome-free-regular/faStar';
-import faSearch from '@fortawesome/fontawesome-free-solid/faSearch';
-import css from './LocationHeader.css';
+import BackLink from '../BackLink/BackLink';
+import FavouriteLink from '../FavouriteLink/FavouriteLink';
+import SearchLink from '../SearchLink/SearchLink';
+import PageHeader from '../PageHeader/PageHeader';
 
-const LocationHeader = withRouter(({history, ...props}) => {
-  let back = null;
+const LocationHeader = (props) => {
+  let goBack = null;
   let favourite = null;
-  let search = <div className={css.Search}/>;
+  let search = null;
 
   if (props.back) {
-    back = <div onClick={history.goBack} className={css.Back}>
-      <FontAwesomeIcon icon={faBack} />
-      <span className={css.BackLabel}>Back</span>
-    </div>
+    goBack = <BackLink />;
   }
   if (props.favourite) {
-    favourite = (<div className={css.Favourite}>
-      <FontAwesomeIcon icon={faStar} size="2x" />
-    </div>);
+    favourite = <FavouriteLink />;
   }
   if (props.search) {
-    search = (<div className={css.Search}>
-      <FontAwesomeIcon icon={faSearch} size="2x" />
-    </div>);
+    search = <SearchLink />;
   }
   return (
-    <header className={css.ForecastHeader}>
-      {back}
-      {favourite}
-      <div className={css.Location}>
-        <h1 className={css.Suburb}>Jakobsberg</h1>
-        <h2 className={css.County}>Järfälla</h2>
-      </div>
-      {search}
-    </header>
+    <PageHeader leftFunction={goBack || favourite} rightFunction={search}>
+      <h1>Jakobsberg</h1>
+      <h2>Järfälla</h2>
+    </PageHeader>
   );
-});
+};
 
 export default LocationHeader;

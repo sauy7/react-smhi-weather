@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import Settings from '../../components/Settings/Settings';
-import Favourites from '../../components/Favourites/Favourites';
+import FavouritesList from '../../components/FavouritesList/FavouritesList';
 import About from '../../components/About/About';
-import css from './More.css';
+import PageHeader from "../../components/PageHeader/PageHeader";
 
 class More extends Component {
   render() {
     return (
-      <section className={[css.More, 'page'].join(' ')}>
-        <header className={css.MoreHeader}>
+      <section className="page">
+        <PageHeader>
           <h1>More</h1>
-        </header>
+        </PageHeader>
         <Settings />
-        <Favourites />
+        <FavouritesList />
         <About />
       </section>
     );

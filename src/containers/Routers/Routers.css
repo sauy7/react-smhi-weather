@@ -21,6 +21,7 @@
   }
 
   .page {
+    background-color: white;
     margin-bottom: 5rem;
     min-height: 100vh;
     position: absolute;

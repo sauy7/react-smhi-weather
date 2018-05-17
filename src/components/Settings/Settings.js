@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import MoreSectionHeader from '../MoreSectionHeader/MoreSectionHeader';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faLanguage from "@fortawesome/fontawesome-free-regular/faComment";
@@ -13,19 +14,25 @@ const Settings = () => {
       <MoreSectionHeader name="Settings" />
       <ul className={css.Settings}>
         <li>
-          <FontAwesomeIcon icon={faLocation} />
-          <span className={css.Label}>Start location</span>
-          <FontAwesomeIcon icon={faRight} />
+          <Link to="/more/start-location">
+            <FontAwesomeIcon icon={faLocation} />
+            <span className={css.Label}>Start location</span>
+            <FontAwesomeIcon icon={faRight} />
+          </Link>
         </li>
         <li>
-          <FontAwesomeIcon icon={faTheme} />
-          <span className={css.Label}>Theme</span>
-          <FontAwesomeIcon icon={faRight} />
+          <Link to="/more/themes">
+            <FontAwesomeIcon icon={faTheme} />
+            <span className={css.Label}>Theme</span>
+            <FontAwesomeIcon icon={faRight} />
+          </Link>
         </li>
         <li>
-          <FontAwesomeIcon icon={faLanguage} />
-          <span className={css.Label}>Language</span>
-          <FontAwesomeIcon icon={faRight} />
+          <Link to="/more/languages">
+            <FontAwesomeIcon icon={faLanguage} />
+            <span className={css.Label}>Language</span>
+            <FontAwesomeIcon icon={faRight} />
+          </Link>
         </li>
       </ul>
     </section>
