@@ -1,9 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import {App} from './App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('<App />', () => {
+  let wrapper;
+
+  // Mock onChangeLocation function to replace the one provided by
+  // mapDispatchToProps
+  const mockOnChangeLocation = jest.fn();
+
+  beforeEach(() => {
+    wrapper = shallow(<App onChangeLocation={mockOnChangeLocation}/>);
+  });
+
+  it('renders without crashing', () => {
+    expect(wrapper).toBeDefined();
+  });
 });

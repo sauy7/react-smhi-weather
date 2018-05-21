@@ -18,7 +18,7 @@ const BottomNavigation = () => {
       icon={item.icon}
       label={item.label}
       key={item.to} />
-  })
+  });
 
   return (
     <nav className={css.BottomNavigation}>

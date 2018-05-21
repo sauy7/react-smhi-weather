@@ -13,7 +13,7 @@ class Forecast extends Component {
         <LocationHeader
           back={false}
           favourite={true}
-          search={true}/>
+          search={true} />
         <DayHeader
           date="SUN 13 MAY"
           sunrise="04:20"
