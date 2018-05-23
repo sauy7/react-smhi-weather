@@ -1,0 +1,24 @@
+.FavouriteItem {
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  box-sizing: border-box;
+  display: flex;
+  padding: .75rem;
+}
+
+.NoFavouriteItem {
+  padding: .75rem;
+}
+
+.Suburb {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.County {
+  color: darkgray;
+  flex-grow: 1;
+  font-size: .85rem;
+  margin-right: .5rem;
+  text-align: right;
+}

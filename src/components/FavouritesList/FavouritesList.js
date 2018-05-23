@@ -1,22 +1,50 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import MoreSectionHeader from '../MoreSectionHeader/MoreSectionHeader';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faRemove from "@fortawesome/fontawesome-free-regular/faTrashAlt";
 import css from './FavouritesList.css';
+import * as selectors from '../../store/selectors';
+import {FavouriteItem, NoFavouriteItem} from "../FavouriteItem/FavouriteItem";
+import {removeAndRenounceFavouriteLocation} from '../../store/actions';
 
-const FavouritesList = () => {
+const FavouritesList = (props) => {
+  let locations = (
+    <CSSTransition
+      key="none"
+      classNames="delayed-fade-in"
+      timeout={300}>
+      <NoFavouriteItem />
+    </CSSTransition>
+  );
+
+  if (props.locations.length > 0) {
+    locations = props.locations.map(location => {
+      return (
+        <CSSTransition
+          key={location.id}
+          classNames="fade-out"
+          timeout={300}>
+          <FavouriteItem
+            suburb={location.suburb}
+            county={location.county}
+            onClick={() => props.onRemoveFavouriteLocation(location.id)} />
+        </CSSTransition>
+      );
+    });
+  }
+
   return (
     <section>
       <MoreSectionHeader name="Favourites" />
-      <ul className={css.FavouritesList}>
-        <li>
-          <span className={css.Location}>Suburb</span>
-          <span className={css.County}>County</span>
-          <FontAwesomeIcon icon={faRemove} />
-        </li>
-      </ul>
+      <TransitionGroup component="ul" className={css.FavouritesList}>
+        {locations}
+      </TransitionGroup>
     </section>
   );
 };
 
-export default FavouritesList;
+export default connect((state) => ({
+  locations: selectors.getFavouriteLocations(state)
+}), {
+  onRemoveFavouriteLocation: removeAndRenounceFavouriteLocation
+})(FavouritesList);
