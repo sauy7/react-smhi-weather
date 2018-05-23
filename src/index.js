@@ -7,6 +7,8 @@ import thunk from 'redux-thunk';
 import favouriteReducer from './store/reducers/favourite';
 import locationReducer from './store/reducers/location';
 import {Provider} from 'react-redux';
+import {loadState, saveState} from './localStorage';
+import throttle from 'lodash/throttle';
 
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -27,13 +29,20 @@ const rootReducer = combineReducers({
   favourite: favouriteReducer
 });
 
+const persistedState = loadState();
+
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 const store = createStore(
-  rootReducer, /* preloadedState, */
+  rootReducer,
+  persistedState,
   composeEnhancers(applyMiddleware(thunk))
 );
+
+store.subscribe(throttle(() => {
+  saveState(store.getState());
+}), 1000);
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();
