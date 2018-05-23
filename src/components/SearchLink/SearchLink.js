@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faSearch from '@fortawesome/fontawesome-free-solid/faSearch';
+import {faSearch} from '@fortawesome/fontawesome-free-solid';
 
 const SearchLink = () => {
   return (

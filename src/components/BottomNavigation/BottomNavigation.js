@@ -1,8 +1,8 @@
 import React from 'react';
 import NavigationItem from './NavigationItem/NavigationItem';
-import faStart from '@fortawesome/fontawesome-free-solid/faHome';
-import faTenDays from '@fortawesome/fontawesome-free-regular/faCalendarAlt';
-import faMore from '@fortawesome/fontawesome-free-solid/faCog';
+import {faHome as faStart} from '@fortawesome/fontawesome-free-solid';
+import {faCalendarAlt as faTenDays} from '@fortawesome/fontawesome-free-regular';
+import {faCog as faMore} from '@fortawesome/fontawesome-free-solid';
 import css from './BottomNavigation.css';
 
 const BottomNavigation = () => {

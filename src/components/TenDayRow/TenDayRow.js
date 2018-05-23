@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import WeatherIcons from 'react-weathericons';
-import faRight from "@fortawesome/fontawesome-free-solid/faChevronRight";
+import {faChevronRight as faRight} from "@fortawesome/fontawesome-free-solid";
 import css from './TenDayRow.css';
 
 const TenDayRow = withRouter(({history, ...props}) => {

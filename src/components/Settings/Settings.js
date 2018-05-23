@@ -2,10 +2,10 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import MoreSectionHeader from '../MoreSectionHeader/MoreSectionHeader';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faLanguage from "@fortawesome/fontawesome-free-regular/faComment";
-import faLocation from "@fortawesome/fontawesome-free-solid/faMapMarkerAlt";
-import faRight from "@fortawesome/fontawesome-free-solid/faChevronRight";
-import faTheme from "@fortawesome/fontawesome-free-solid/faPaintBrush";
+import {faComment as faLanguage} from '@fortawesome/fontawesome-free-regular';
+import {faMapMarkerAlt as faLocation} from '@fortawesome/fontawesome-free-solid';
+import {faChevronRight as faRight} from '@fortawesome/fontawesome-free-solid';
+import {faPaintBrush as faTheme} from '@fortawesome/fontawesome-free-solid';
 import css from './Settings.css';
 
 const Settings = () => {

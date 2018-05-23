@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faBack from '@fortawesome/fontawesome-free-solid/faChevronLeft';
+import {faChevronLeft as faBack} from '@fortawesome/fontawesome-free-solid';
 import css from './BackLink.css';
 
 const BackLink = withRouter(({history}) => {

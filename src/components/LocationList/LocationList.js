@@ -1,6 +1,6 @@
 import React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faRight from '@fortawesome/fontawesome-free-solid/faChevronRight';
+import {faChevronRight as faRight} from '@fortawesome/fontawesome-free-solid';
 import css from './LocationList.css';
 
 const LocationList = () => {
