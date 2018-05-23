@@ -4,19 +4,27 @@ import {BrowserRouter} from 'react-router-dom';
 import WrapRouters from './hoc/WrapRouters';
 import Layout from './components/Layout/Layout'
 import {setLocation} from './store/actions/index';
+import {getFavouriteLocations, getStartLocation} from "./store/selectors";
 
 export class App extends Component {
   componentDidMount() {
-    if ('geolocation' in navigator) { // geolocation supported
-      navigator.geolocation.getCurrentPosition(position => {
-        const lat = position.coords.latitude.toFixed(4);
-        const lon = position.coords.longitude.toFixed(4);
-        this.props.onChangeLocation(lat, lon);
-      }, (/*error*/) => { // geolocation did not work
+    if (this.props.startLocation) { // use stored startLocation
+      const location = this.props.favouriteLocations.find(
+        location => location.id === this.props.startLocation
+      );
+      this.props.onChangeLocation(location.lat, location.lon);
+    } else {
+      if ('geolocation' in navigator) { // geolocation supported
+        navigator.geolocation.getCurrentPosition(position => {
+          const lat = position.coords.latitude.toFixed(4);
+          const lon = position.coords.longitude.toFixed(4);
+          this.props.onChangeLocation(lat, lon);
+        }, (/*error*/) => { // geolocation did not work
+          this.props.onChangeLocation();
+        }, { maximumAge: 120000, timeout: 10000 });
+      } else { // geolocation not supported
         this.props.onChangeLocation();
-      }, { maximumAge: 120000, timeout: 10000 });
-    } else { // geolocation not supported
-      this.props.onChangeLocation();
+      }
     }
   }
 
@@ -31,4 +39,9 @@ export class App extends Component {
   }
 }
 
-export default connect(null, { onChangeLocation: setLocation })(App);
+export default connect((state) => ({
+  startLocation: getStartLocation(state),
+  favouriteLocations: getFavouriteLocations(state)
+}), {
+  onChangeLocation: setLocation
+})(App);

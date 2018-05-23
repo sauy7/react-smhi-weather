@@ -1,7 +1,16 @@
 import * as selectors from './index';
 
-describe('Location selectors', () => {
-  const state = { location: { county: 'Järfälla', suburb: 'Jakobsberg', isFavourite: true } };
+describe('location selectors', () => {
+  const state = {
+    location: {
+      county: 'Järfälla',
+      suburb: 'Jakobsberg',
+      isFavourite: true
+    },
+    favourite: {
+      locations: []
+    }
+  };
 
   it('getCounty() returns state.location.county', () => {
     expect(selectors.getCounty(state)).toBe('Järfälla');
@@ -16,7 +25,7 @@ describe('Location selectors', () => {
   })
 });
 
-describe('Favourite selectors', () => {
+describe('favourite selectors', () => {
   const state = {
     favourite: {
       locations: [
@@ -29,5 +38,17 @@ describe('Favourite selectors', () => {
 
   it('getFavouriteLocations() returns state.favourite.locations', () => {
     expect(selectors.getFavouriteLocations(state)).toHaveLength(2);
+  });
+});
+
+describe('start location selectors', () => {
+  const state = {
+    startLocation: {
+      locationId: 'Jakobsberg|Järfälla'
+    }
+  };
+
+  it('getStartLocation() returns state.startLocation.locationId', () => {
+    expect(selectors.getStartLocation(state)).toEqual('Jakobsberg|Järfälla');
   });
 });

@@ -4,7 +4,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {faStar as faNotFavourite} from '@fortawesome/fontawesome-free-regular';
 import {faStar as faFavourite} from '@fortawesome/fontawesome-free-solid';
 import {toggleFavouriteLocation} from '../../store/actions/index';
-import * as selectors from "../../store/selectors";
+import * as selectors from "../../store/selectors/index";
 
 const Star = ({isFavourite, onClick}) => {
   return (

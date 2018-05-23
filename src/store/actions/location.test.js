@@ -1,25 +1,31 @@
-import OSMAxios from '../../axios/OSMAxios';
 import MockAdapter from 'axios-mock-adapter';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import * as actions from './index';
+import * as actions from './location';
+import OSMAxios from '../../axios/OSMAxios';
 import * as types from '../../constants/ActionTypes';
+import thunk from 'redux-thunk';
+import configureStore from 'redux-mock-store';
 
-const middlewares = [thunk];
-const mockStore = configureStore(middlewares);
+const mockStore = configureStore([thunk]);
 
 describe('setLocation()', () => {
   let mockAxios;
   const lat = 59.4307;
   const lon = 17.8214;
+  const initialState = {
+    location: {},
+    favourite: {
+      locations: []
+    },
+    startLocation: null
+  };
   const expected = {
-    county: 'Järfälla', lat: lat, lon: lon, suburb: 'Jakobsberg'
+    county: 'Järfälla', lat: lat, lon: lon, suburb: 'Jakobsberg', isFavourite: false
   };
   const unknown = {
-    county: [lat, lon].join(', '), lat: lat, lon: lon, suburb: 'Unknown'
+    county: [lat, lon].join(', '), lat: lat, lon: lon, suburb: 'Unknown', isFavourite: false
   };
   const fallback = {
-    county: 'Stockholm kommun', lat: 59.3345, lon: 18.0632, suburb: 'Stockholm'
+    county: 'Stockholm kommun', lat: 59.3345, lon: 18.0632, suburb: 'Stockholm', isFavourite: false
   };
 
   beforeEach(() => {
@@ -39,7 +45,7 @@ describe('setLocation()', () => {
     const expectedActions = [
       { type: types.SET_LOCATION, location: expected }
     ];
-    const store = mockStore({});
+    const store = mockStore(initialState);
 
     return store.dispatch(actions.setLocation(lat, lon)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
@@ -58,7 +64,7 @@ describe('setLocation()', () => {
     const expectedActions = [
       { type: types.SET_LOCATION, location: expected }
     ];
-    const store = mockStore({});
+    const store = mockStore(initialState);
 
     return store.dispatch(actions.setLocation(lat, lon)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
@@ -70,7 +76,7 @@ describe('setLocation()', () => {
     const expectedActions = [
       { type: types.SET_LOCATION, location: unknown }
     ];
-    const store = mockStore({});
+    const store = mockStore(initialState);
 
     return store.dispatch(actions.setLocation(lat, lon)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
@@ -87,7 +93,7 @@ describe('setLocation()', () => {
     const expectedActions = [
       { type: types.SET_LOCATION, location: fallback }
     ];
-    const store = mockStore({});
+    const store = mockStore(initialState);
 
     return store.dispatch(actions.setLocation()).then(() => { // no coords
       expect(store.getActions()).toEqual(expectedActions);

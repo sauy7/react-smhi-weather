@@ -6,6 +6,7 @@ import {createStore, applyMiddleware, combineReducers, compose} from 'redux';
 import thunk from 'redux-thunk';
 import favouriteReducer from './store/reducers/favourite';
 import locationReducer from './store/reducers/location';
+import startLocationReducer from './store/reducers/startLocation';
 import {Provider} from 'react-redux';
 import {loadState, saveState} from './localStorage';
 import throttle from 'lodash/throttle';
@@ -26,7 +27,8 @@ WebFont.load({
 
 const rootReducer = combineReducers({
   location: locationReducer,
-  favourite: favouriteReducer
+  favourite: favouriteReducer,
+  startLocation: startLocationReducer
 });
 
 const persistedState = loadState();
@@ -45,5 +47,8 @@ store.subscribe(throttle(() => {
   saveState(store.getState());
 }), 1000);
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}><App /></Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();

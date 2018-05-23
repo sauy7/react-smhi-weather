@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import * as selectors from '../../store/selectors/index';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import MoreSectionHeader from '../MoreSectionHeader/MoreSectionHeader';
-import css from './FavouritesList.css';
-import * as selectors from '../../store/selectors';
 import {FavouriteItem, NoFavouriteItem} from "../FavouriteItem/FavouriteItem";
-import {removeAndRenounceFavouriteLocation} from '../../store/actions';
+import {removeAndRenounceFavouriteLocation} from '../../store/actions/index';
+import css from './FavouritesList.css';
 
-const FavouritesList = (props) => {
+export const FavouritesList = (props) => {
   let locations = (
     <CSSTransition
       key="none"
