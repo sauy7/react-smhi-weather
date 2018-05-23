@@ -2,12 +2,10 @@ export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
     if (serializedState === null) {
-      console.log("'state' item not in localStorage");
       return undefined;
     }
     return JSON.parse(serializedState);
   } catch (_error) {
-    console.log(_error);
     return undefined;
   }
 };

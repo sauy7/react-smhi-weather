@@ -18,6 +18,7 @@ const reducer = produce(
         draft.lat = action.location.lat;
         draft.lon = action.location.lon;
         draft.suburb = action.location.suburb;
+        draft.isFavourite = action.location.isFavourite;
         return;
       case types.MAKE_LOCATION_FAVOURITE:
         draft.isFavourite = true;

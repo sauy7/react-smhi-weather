@@ -24,10 +24,15 @@ const getLocation = (lat, lon) => {
 };
 
 const currentLocation = (location) => {
-  return {
-    type: types.SET_LOCATION,
-    location: location
-  };
+  return (dispatch, getState) => {
+    const locationId = [location.suburb, location.county].join('|');
+    const favouriteLocations = selectors.getFavouriteLocations(getState());
+    location.isFavourite = favouriteLocations.filter(loc => loc.id === locationId).length > 0;
+    dispatch({
+      type: types.SET_LOCATION,
+      location: location
+    });
+  }
 };
 
 export const setLocation = (lat = fallback.lat, lon = fallback.lon) => {
