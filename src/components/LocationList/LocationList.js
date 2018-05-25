@@ -5,7 +5,7 @@ import {faChevronRight as faRight} from '@fortawesome/fontawesome-free-solid';
 import {NoFavouriteItem} from '../FavouriteItem/FavouriteItem';
 import css from './LocationList.css';
 import * as selectors from '../../store/selectors/index';
-import {setStartLocation} from '../../store/actions/index';
+import * as actions from '../../store/actions/index';
 
 export const LocationList = (props) => {
   let locations = <NoFavouriteItem />;
@@ -37,5 +37,5 @@ export default connect((state) => ({
   startLocation: selectors.getStartLocation(state),
   locations: selectors.getFavouriteLocations(state)
 }), {
-  onSetStartLocation: setStartLocation
+  onSetStartLocation: actions.setStartLocation
 })(LocationList);

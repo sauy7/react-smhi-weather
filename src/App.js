@@ -16,8 +16,8 @@ export class App extends Component {
     } else {
       if ('geolocation' in navigator) { // geolocation supported
         navigator.geolocation.getCurrentPosition(position => {
-          const lat = position.coords.latitude.toFixed(4);
-          const lon = position.coords.longitude.toFixed(4);
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
           this.props.onChangeLocation(lat, lon);
         }, (/*error*/) => { // geolocation did not work
           this.props.onChangeLocation();

@@ -14,7 +14,7 @@ const getLocation = (lat, lon) => {
 
   return OSMAxios.get('/reverse', { params: params }).then(response => {
     const address = response.data.address;
-    const suburb = address.city || address.municipality || address.suburb;
+    const suburb = address.hamlet || address.village || address.town || address.city || address.municipality || address.suburb;
     return { lat: lat, lon: lon, suburb: suburb, county: address.county }
   }).catch((/*error*/) => {
     return { lat: lat, lon: lon, suburb: 'Unknown', county: [lat, lon].join(', ') }

@@ -3,8 +3,46 @@
 }
 
 .SearchInput {
+  border: 1px solid lightgray;
   box-sizing: border-box;
   font-family: inherit;
   padding: .5rem;
   width: 100%;
+}
+
+.DropdownContainer {
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 0 1px;
+}
+
+.SuggestionItem,
+.SuggestionItemActive {
+  border-bottom: 1px solid lightgray;
+  cursor: pointer;
+  display: flex;
+  padding: 0.75rem;
+}
+
+.Suburb {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.County {
+  color: darkgray;
+  flex-grow: 1;
+  font-size: .85rem;
+  margin-right: .5rem;
+  text-align: right;
+}
+
+.SuggestionItem {
+  background-color: #fff;
+  color: black;
+}
+
+.SuggestionItemActive {
+  background-color: cornflowerblue;
+  color: white;
 }
