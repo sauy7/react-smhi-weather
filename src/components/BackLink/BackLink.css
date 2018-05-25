@@ -1,3 +1,7 @@
+.BackLink {
+  cursor: pointer;
+}
+
 .BackLabel {
   margin-left: .2rem;
 }

@@ -6,7 +6,7 @@ import css from './BackLink.css';
 
 const BackLink = withRouter(({history}) => {
   return (
-    <div onClick={history.goBack}>
+    <div className={css.BackLink} onClick={history.goBack}>
       <FontAwesomeIcon icon={faBack} />
       <span className={css.BackLabel}>Back</span>
     </div>
