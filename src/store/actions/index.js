@@ -1,5 +1,9 @@
 export {
-  setLocation
+  currentLocation,
+  getCurrentLocation,
+  getLocation,
+  setAndDisplayCurrentLocation,
+  setCurrentLocation
 } from './location';
 
 export {
@@ -8,5 +12,11 @@ export {
 } from './favourite';
 
 export {
+  resetStartLocation,
   setStartLocation
 } from './startLocation';
+
+export {
+  addAndDisplaySearchLocation,
+  displaySearchLocation
+} from './locationSearches';

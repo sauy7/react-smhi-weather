@@ -1,7 +1,6 @@
 import * as actions from './startLocation';
 import * as types from '../../constants/ActionTypes';
 
-
 describe('setStartLocation()', () => {
   it('dispatches SET_START_LOCATION', () => {
     const locationId = 'Jakobsberg|Järfälla';

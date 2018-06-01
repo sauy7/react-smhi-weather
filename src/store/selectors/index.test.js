@@ -52,3 +52,19 @@ describe('start location selectors', () => {
     expect(selectors.getStartLocation(state)).toEqual('Jakobsberg|Järfälla');
   });
 });
+
+describe('location searches selectors', () => {
+  const state = {
+    locationSearches: {
+      locations: [
+        { id: 'Jakobsberg, Järfälla', county: 'Järfälla', suburb: 'Jakobsberg' },
+        { id: 'Stockholm, Stockholm kommun', county: 'Stockholm kommun',
+          suburb: 'Stockholm'}
+      ]
+    }
+  };
+
+  it('getLocationSearches() returns state.locationSearches.locations', () => {
+    expect(selectors.getLocationSearches(state)).toHaveLength(2);
+  });
+});

@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import favouriteReducer from './store/reducers/favourite';
 import locationReducer from './store/reducers/location';
 import startLocationReducer from './store/reducers/startLocation';
+import locationSearchesReducer from './store/reducers/locationSearches';
 import {Provider} from 'react-redux';
 import {loadState, saveState} from './localStorage';
 import throttle from 'lodash/throttle';
@@ -28,7 +29,8 @@ WebFont.load({
 const rootReducer = combineReducers({
   location: locationReducer,
   favourite: favouriteReducer,
-  startLocation: startLocationReducer
+  startLocation: startLocationReducer,
+  locationSearches: locationSearchesReducer
 });
 
 const persistedState = loadState();

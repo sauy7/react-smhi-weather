@@ -1,7 +1,5 @@
 import * as selectors from '../selectors';
-import {getCurrentLocationId} from '../selectors';
 import * as types from '../../constants/ActionTypes';
-import {getIsFavourite} from '../selectors';
 
 const makeLocationFavourite = () => {
   return {
@@ -15,16 +13,10 @@ const renounceLocationFavourite = () => {
   }
 };
 
-const addFavouriteLocation = (id, suburb, county, latitude, longitude) => {
+const addFavouriteLocation = (location) => {
   return {
     type: types.ADD_FAVOURITE_LOCATION,
-    location: {
-      id: id,
-      county: county,
-      suburb: suburb,
-      lat: latitude,
-      lon: longitude
-    }
+    location: location
   }
 };
 
@@ -42,7 +34,14 @@ const updateFavouriteLocations = (suburb, county, latitude, longitude) => {
     if (favouriteLocations.filter(location => location.id === locationId).length > 0) {
       dispatch(removeFavouriteLocation(locationId));
     } else {
-      dispatch(addFavouriteLocation(locationId, suburb, county, latitude, longitude));
+      const location = {
+        county: county,
+        id: locationId,
+        lat: latitude,
+        lon: longitude,
+        suburb: suburb
+      };
+      dispatch(addFavouriteLocation(location));
     }
   }
 };
@@ -53,7 +52,7 @@ export const toggleFavouriteLocation = () => {
     const county = selectors.getCounty(getState());
     const latitude = selectors.getLatitude(getState());
     const longitude = selectors.getLongitude(getState());
-    let actions =[dispatch(updateFavouriteLocations(suburb, county, latitude, longitude))];
+    let actions = [dispatch(updateFavouriteLocations(suburb, county, latitude, longitude))];
     if (!selectors.getIsFavourite(getState())) {
       actions.push(dispatch(makeLocationFavourite()))
     } else {
@@ -65,7 +64,7 @@ export const toggleFavouriteLocation = () => {
 
 export const removeAndRenounceFavouriteLocation = (id) => {
   return (dispatch, getState) => {
-    if (id === getCurrentLocationId(getState()) && getIsFavourite(getState())) {
+    if (id === selectors.getCurrentLocationId(getState()) && selectors.getIsFavourite(getState())) {
       Promise.all([
         dispatch(removeFavouriteLocation(id)),
         dispatch(renounceLocationFavourite())

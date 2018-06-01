@@ -4,17 +4,18 @@ import PageHeader from '../../components/PageHeader/PageHeader';
 import BackLink from '../../components/BackLink/BackLink';
 import SearchLink from '../../components/SearchLink/SearchLink';
 import MoreSectionHeader from '../../components/MoreSectionHeader/MoreSectionHeader';
-import {FavouriteItem} from '../../components/FavouriteItem/FavouriteItem';
+import {FavouriteItem, NoFavouriteItem} from '../../components/FavouriteItem/FavouriteItem';
 import LocationList from '../../components/LocationList/LocationList';
 import css from './StartLocation.css';
 import * as selectors from '../../store/selectors/index';
-import {resetStartLocation} from "../../store/actions/startLocation";
+import * as actions from '../../store/actions';
 
 const StartLocation = (props) => {
   const goBack = <BackLink />;
   const search = <SearchLink />;
-
+  const emptyList = <NoFavouriteItem />;
   let startLocation = (<div className={css.NoStartLocation}>Your current position</div>);
+  const locations = props.locations.filter(location => location.id !== props.startLocation);
 
   if (props.startLocation !== null) {
     const [suburb, county] = props.startLocation.split('|');
@@ -35,13 +36,18 @@ const StartLocation = (props) => {
         {startLocation}
       </div>
       <MoreSectionHeader name="Choose from favourites"/>
-      <LocationList />
+      <LocationList
+        emptyList={emptyList}
+        locations={locations}
+        onClickLocation={props.onClickLocation} />
     </section>
   );
 };
 
 export default connect((state) => ({
-  startLocation: selectors.getStartLocation(state)
+  startLocation: selectors.getStartLocation(state),
+  locations: selectors.getFavouriteLocations(state)
 }), {
-  onResetStartLocation: resetStartLocation
+  onResetStartLocation: actions.resetStartLocation,
+  onClickLocation: actions.setStartLocation
 })(StartLocation);

@@ -8,3 +8,5 @@ export const getCurrentLocationId = state => [getSuburb(state), getCounty(state)
 export const getFavouriteLocations = state => state.favourite.locations;
 
 export const getStartLocation = state => state.startLocation.locationId;
+
+export const getLocationSearches = state => state.locationSearches.locations;

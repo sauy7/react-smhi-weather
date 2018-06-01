@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as selectors from '../../store/selectors/index';
-import * as actions from '../../store/actions/location';
+import * as actions from '../../store/actions/index';
 import PlacesAutocomplete, { geocodeByPlaceId, getLatLng } from 'react-places-autocomplete';
 import BackLink from '../../components/BackLink/BackLink';
 import PageHeader from '../../components/PageHeader/PageHeader';
@@ -9,7 +9,7 @@ import MoreSectionHeader from '../../components/MoreSectionHeader/MoreSectionHea
 import LocationItem from '../../components/LocationItem/LocationItem';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {faChevronRight as faRight} from '@fortawesome/fontawesome-free-solid';
-// import LocationList from '../../components/LocationList/LocationList';
+import LocationList from '../../components/LocationList/LocationList';
 import intersection from 'lodash/intersection';
 import css from './Search.css';
 
@@ -17,30 +17,62 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: ''
+      county: '',
+      lat: null,
+      lon: null,
+      query: '',
+      suburb: 'Loading location...'
     };
     this.excludedLocationTypes = ['establishment', 'route'];
   }
 
   componentDidMount() {
     this.search.focus();
+    if ('geolocation' in navigator) { // geolocation supported
+      navigator.geolocation.getCurrentPosition(position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        this.props.onGeolocation(lat, lon).then(location => {
+          this.setState({
+            county: location.county,
+            lat: location.lat,
+            lon: location.lon,
+            suburb: location.suburb
+          });
+        });
+      }, (/*error*/) => { // geolocation did not work
+        this.setState({ county: '', suburb: 'Unknown' })
+      }, { maximumAge: 120000, timeout: 10000 });
+    } else { // geolocation not supported
+      this.setState({ county: '', suburb: 'Unknown' })
+    }
   }
 
   onChangeHandler = (query) => {
     this.setState({ query: query });
   };
 
-  onSelectHandler = (address, placeId) => {
+  onSelectCurrentPositionHandler = () => {
+    if (this.state.lat && this.state.lon) {
+      const location = {
+        county: this.state.county,
+        lat: this.state.lat,
+        lon: this.state.lon,
+        suburb: this.state.suburb
+      };
+      return this.props.onSetAndDisplayCurrentLocation(location);
+    } else {
+      return null;
+    }
+  };
+
+  onSelectHandler = (_address, placeId) => {
     geocodeByPlaceId(placeId)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
-        const lat = latLng.lat;
-        const lon = latLng.lng;
-        this.props.onSearchLocationSelect(lat, lon).then(() => {
-          this.props.history.push('/');
-        });
+        this.props.onSearchLocationSelect(latLng.lat, latLng.lng);
       })
-      .catch(error => console.error('Error', error))
+      .catch(error => console.error('Error', error));
   };
 
   displaySuggestions = ({ getInputProps, suggestions, getSuggestionItemProps }) => (
@@ -76,6 +108,7 @@ class Search extends Component {
       componentRestrictions: { country: 'se' },
       types: ['geocode']
     };
+    const emptyList = <div className={css.NoPreviousSearches}>No previous searches</div>;
 
     return (
       <section className="page">
@@ -96,10 +129,14 @@ class Search extends Component {
           </div>
           <MoreSectionHeader name="Your current position"/>
           <LocationItem
-            suburb={this.props.suburb}
-            county={this.props.county} />
+            suburb={this.state.suburb}
+            county={this.state.county}
+            onClick={this.onSelectCurrentPositionHandler} />
           <MoreSectionHeader name="Latest searches"/>
-          {/*<LocationList />*/}
+          <LocationList
+            emptyList={emptyList}
+            locations={this.props.locations}
+            onClickLocation={this.props.onClickLocation} />
         </form>
       </section>
     );
@@ -107,8 +144,10 @@ class Search extends Component {
 }
 
 export default connect((state) => ({
-  county: selectors.getCounty(state),
-  suburb: selectors.getSuburb(state)
+  locations: selectors.getLocationSearches(state)
 }), {
-  onSearchLocationSelect: actions.setLocation
+  onGeolocation: actions.getCurrentLocation,
+  onSearchLocationSelect: actions.addAndDisplaySearchLocation,
+  onClickLocation: actions.displaySearchLocation,
+  onSetAndDisplayCurrentLocation: actions.setAndDisplayCurrentLocation
 })(Search);

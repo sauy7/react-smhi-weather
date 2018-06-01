@@ -10,12 +10,36 @@ describe('location reducer', () => {
     expect(reducer(undefined, {})).toEqual(initialState);
   });
 
-  it('handles SET_LOCATION', () => {
+  it('handles SET_LOCATION with location', () => {
     expect(
       reducer({}, {
         type: types.SET_LOCATION,
         location: expected
       })
+    ).toEqual(expected);
+  });
+
+  it('handles MAKE_LOCATION_FAVOURITE', () => {
+    const state = {
+      isFavourite: false
+    };
+    const expected = {
+      isFavourite: true
+    };
+    expect(
+      reducer(state, { type: types.MAKE_LOCATION_FAVOURITE })
+    ).toEqual(expected);
+  });
+
+  it('handles RENOUNCE_LOCATION_FAVOURITE', () => {
+    const state = {
+      isFavourite: true
+    };
+    const expected = {
+      isFavourite: false
+    };
+    expect(
+      reducer(state, { type: types.RENOUNCE_LOCATION_FAVOURITE })
     ).toEqual(expected);
   });
 });

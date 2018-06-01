@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
+import {Router} from 'react-router-dom';
+import history from './history';
 import WrapRouters from './hoc/WrapRouters';
 import Layout from './components/Layout/Layout'
-import {setLocation} from './store/actions/index';
+import {setCurrentLocation} from './store/actions/index';
 import {getFavouriteLocations, getStartLocation} from "./store/selectors";
 
 export class App extends Component {
@@ -30,11 +31,11 @@ export class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Layout>
           <WrapRouters />
         </Layout>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
@@ -43,5 +44,5 @@ export default connect((state) => ({
   startLocation: getStartLocation(state),
   favouriteLocations: getFavouriteLocations(state)
 }), {
-  onChangeLocation: setLocation
+  onChangeLocation: setCurrentLocation
 })(App);

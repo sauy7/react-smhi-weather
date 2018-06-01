@@ -46,3 +46,7 @@
   background-color: cornflowerblue;
   color: white;
 }
+
+.NoPreviousSearches {
+  padding: .75rem;
+}

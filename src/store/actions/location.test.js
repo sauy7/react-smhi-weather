@@ -4,10 +4,11 @@ import OSMAxios from '../../axios/OSMAxios';
 import * as types from '../../constants/ActionTypes';
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
+import history from '../../history';
 
 const mockStore = configureStore([thunk]);
 
-describe('setLocation()', () => {
+describe('setCurrentLocation()', () => {
   let mockAxios;
   const lat = 59.4307;
   const lon = 17.8214;
@@ -47,7 +48,7 @@ describe('setLocation()', () => {
     ];
     const store = mockStore(initialState);
 
-    return store.dispatch(actions.setLocation(lat, lon)).then(() => {
+    return store.dispatch(actions.setCurrentLocation(lat, lon)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
@@ -66,7 +67,7 @@ describe('setLocation()', () => {
     ];
     const store = mockStore(initialState);
 
-    return store.dispatch(actions.setLocation(lat, lon)).then(() => {
+    return store.dispatch(actions.setCurrentLocation(lat, lon)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
@@ -78,7 +79,7 @@ describe('setLocation()', () => {
     ];
     const store = mockStore(initialState);
 
-    return store.dispatch(actions.setLocation(lat, lon)).then(() => {
+    return store.dispatch(actions.setCurrentLocation(lat, lon)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
@@ -95,8 +96,93 @@ describe('setLocation()', () => {
     ];
     const store = mockStore(initialState);
 
-    return store.dispatch(actions.setLocation()).then(() => { // no coords
+    return store.dispatch(actions.setCurrentLocation()).then(() => { // no coords
       expect(store.getActions()).toEqual(expectedActions);
     });
+  });
+});
+
+describe('getCurrentLocation()', () => {
+  let mockAxios;
+  const lat = 59.4307;
+  const lon = 17.8214;
+  const initialState = {
+    location: {},
+    favourite: {
+      locations: []
+    },
+    startLocation: null
+  };
+  const expected = {
+    county: "Järfälla",
+    lat: 59.4307,
+    lon: 17.8214,
+    suburb: "Jakobsberg"
+  };
+
+  beforeEach(() => {
+    mockAxios = new MockAdapter(OSMAxios);
+  });
+
+  afterEach(() => {
+    mockAxios.reset();
+  });
+
+  it('returns a location object asynchronously', () => {
+    const params = { lat: lat, lon: lon, format: 'json'};
+    mockAxios
+      .onGet('/reverse', { params: params })
+      .reply(200, {
+        address: { suburb: 'Jakobsberg', county: 'Järfälla' }
+      });
+    const store = mockStore(initialState);
+    store.dispatch(actions.getCurrentLocation(lat, lon)).then((location) => { // no coords
+      expect(location).toEqual(expected);
+    });
+  });
+});
+
+describe('setAndDisplayCurrentLocation()', () => {
+  const initialState = {
+    location: {},
+    favourite: {
+      locations: []
+    },
+    startLocation: null
+  };
+  const location = {
+    county: "Järfälla",
+    lat: 59.4307,
+    lon: 17.8214,
+    suburb: "Jakobsberg"
+  };
+
+  beforeEach(() => {
+    if (history.location.pathname !== '/search') {
+      history.push('/search');
+    }
+  });
+
+  it("dispatches SET_LOCATION and navigates to '/'", () => {
+    const store = mockStore(initialState);
+    const expectedActions = [
+      { type: types.SET_LOCATION, location: location }
+    ];
+
+    store.dispatch(actions.setAndDisplayCurrentLocation(location));
+    expect(store.getActions()).toEqual(expectedActions);
+    expect(history.location.pathname).toEqual('/');
+  });
+
+  it("dispatches SET_LOCATION and stays on '/'", () => {
+    const store = mockStore(initialState);
+    const expectedActions = [
+      { type: types.SET_LOCATION, location: location }
+    ];
+    history.push('/');
+
+    store.dispatch(actions.setAndDisplayCurrentLocation(location));
+    expect(store.getActions()).toEqual(expectedActions);
+    expect(history.location.pathname).toEqual('/');
   });
 });
